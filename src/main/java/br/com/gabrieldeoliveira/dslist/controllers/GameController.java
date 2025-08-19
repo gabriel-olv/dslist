@@ -1,10 +1,12 @@
 package br.com.gabrieldeoliveira.dslist.controllers;
 
+import br.com.gabrieldeoliveira.dslist.dto.GameDTO;
 import br.com.gabrieldeoliveira.dslist.dto.GameMinDTO;
 import br.com.gabrieldeoliveira.dslist.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,5 +23,11 @@ public class GameController {
     public ResponseEntity<List<GameMinDTO>> getAll() {
         var allGames = gameService.findAll();
         return ResponseEntity.ok(allGames);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<GameDTO> getById(@PathVariable Long id) {
+        var game = gameService.findById(id);
+        return ResponseEntity.ok(game);
     }
 }
