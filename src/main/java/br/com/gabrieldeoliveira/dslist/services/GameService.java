@@ -27,4 +27,9 @@ public class GameService {
                 .orElseThrow(() -> new ResourceNotFoundException("Game not found with id=" + id));
         return new GameDTO(game);
     }
+
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> findByList(Long listId) {
+        return gameRepository.searchByList(listId).stream().map(GameMinDTO::new).toList();
+    }
 }

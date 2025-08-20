@@ -1,6 +1,7 @@
 package br.com.gabrieldeoliveira.dslist.dto;
 
 import br.com.gabrieldeoliveira.dslist.entities.Game;
+import br.com.gabrieldeoliveira.dslist.projections.GameMinProjection;
 import jakarta.persistence.Column;
 
 public class GameMinDTO {
@@ -14,12 +15,20 @@ public class GameMinDTO {
     public GameMinDTO() {
     }
 
-    public GameMinDTO(Game entity) {
-        id = entity.getId();
-        title = entity.getTitle();
-        year = entity.getYear();
-        imgUrl = entity.getImgUrl();
-        shortDescription = entity.getShortDescription();
+    public GameMinDTO(Game game) {
+        id = game.getId();
+        title = game.getTitle();
+        year = game.getYear();
+        imgUrl = game.getImgUrl();
+        shortDescription = game.getShortDescription();
+    }
+
+    public GameMinDTO(GameMinProjection projection) {
+        id = projection.getId();
+        title = projection.getTitle();
+        year = projection.getYear();
+        imgUrl = projection.getImgUrl();
+        shortDescription = projection.getShortDescription();
     }
 
     public Long getId() {
